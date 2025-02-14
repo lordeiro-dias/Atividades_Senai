@@ -1,0 +1,92 @@
+Sistemas de numeração
+
+-Decimal (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+-Binário (0, 1)
+-Hexadecimal (0, 1, 2,3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F)
+
+0 0 0 1 = 1
+0 0 1 0 = 2
+0 0 1 1 = 3
+0 1 0 0 = 4
+0 1 0 1 = 5
+0 1 1 0 = 6
+0 1 1 1 = 7
+1 0 0 0 = 8
+1 0 0 1 = 9
+1 0 1 0 = 10
+
+128 64 32 16 8 4 2 1
+
+1 0 1 0  1 1 0 1 = 128 + 32 + 8 + 4 + 1 == 173
+
+
+
+transformar decimal em binário:
+
+158 / 2 = 79 SOBRA 0
+79 / 2 = 39 SOBRA 1
+39 / 2 = 19 SOBRA 1
+19 / 2 = 9 SOBRA 1
+9 / 2 = 4 SOBRA 1
+4 / 2 = 2 SOBRA 0
+2 / 2 = 1 
+
+1 0 1  1 1 1 0 = 2 + 4 + 8 + 16 + 64 = 158
+
+
+
+1723:
+1723/2 = 861 SOBRA 1
+861/2 = 430 SOBRA 1
+430/2 = 215 SOBRA 0
+215/2 = 107 SOBRA 1
+107/2 = 53 SOBRA 1
+53/2 = 26 SOBRA 1
+26/2 = 13 SOBRA 0
+13/2 = 6 SOBRA 1
+6/2 = 3 SOBRA 0
+3/2 = 1 SOBRA 1
+
+SEMPRE COMEÇA DE TRÁS PARA FRENTE, E COM A SOBRA DO 1. ( 1 1 0  1 0 1 1  1 0 1 1 )
+
+  
+1 1 0  1 0 1 1  1 0 1 1 = 1 + 2 + 8 + 16 + 32 + 128 + 512 + 1024 = 1723
+
+
+
+
+HEXADECIMAL:
+
+  0  0 0
+256 16 1
+
+1 A 7 = 423
+
+256 + 160 + 7 = 423
+
+
+
+qualquer número decimal para hexadecimal = dividir por 16
+
+
+1437/16 = 89 SOBRA 13
+89/16 = 9 SOBRA 5
+
+
+59D = 1437
+
+
+CONVERSÃO BINÁRIO PARA HEXADECIMAL SEMPRE DE 4 EM 4, MUITO MAIS FÁCIL
+
+binário =     1 0010 1110 1101           11 1010 0101            1010 1011 1100
+hexadecimal = 1   2    D    E             3   A    5               A    B    C
+decimal =     1   2   14    13            3   10   5               10   11   12
+
+
+
+
+
+
+
+
+
