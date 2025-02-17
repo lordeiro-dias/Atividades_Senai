@@ -1,0 +1,92 @@
+Portas Lógicas
+
+- Todas as portas lógicas tem apenas uma saída
+
+
+Porta AND - E (saída verdadeira apenas se todas as entradas forem verdadeiras)
+
+a, b = entradas  
+y = saída
+
+a  b  y
+0  0  0
+0  1  0
+1  0  0
+1  1  1
+
+-----------------------------
+
+Porta OR - OU (saída verdadeira se uma ou mais entradas forem verdadeiras)
+
+
+a, b = entradas
+y = saída
+
+a  b  y
+0  0  0
+0  1  1
+1  0  1
+1  1  1
+
+------------------------------
+
+Porta NOT - INVERSORA (auto explicativo [inverso da saída])
+
+a = entrada
+y = saída
+
+a  y
+0  1
+1  0
+
+------------------------------
+
+Porta NAND - NÃO É (inverso da porta AND, saída verdadeira se pelo menos uma entrada for falsa)
+
+a, b = entradas
+y = saída
+
+a  b  y
+0  0  1
+0  1  1
+1  0  1
+1  1  0
+
+------------------------------
+
+Porta NOR - NÃO OU (inverso da porta OR, saída verdadeira apenas se todas as entradas forem falsas)
+
+a, b = entradas
+y = saída
+
+a  b  y
+0  0  1
+0  1  0
+1  0  0
+1  1  0
+
+------------------------------
+
+Porta XOR - OU EXCLUSIVA (apenas 2 entradas, APENAS A VERDADEIRO OU B VERDADEIRO PARA A SAÍDA SSER VERDADEIRA)
+
+a, b = entradas
+y = saída
+
+a  b  y
+0  0  0
+0  1  1
+1  0  1
+1  1  0
+
+------------------------------
+
+Porta XNOR - NÃO OU EXCLUSIVA (apenas 2 entradas, apenas saída verdadeira se ambas as entradas forem falsas ou verdadeiras)
+
+a, b = entradas
+y = saída
+
+a  b  y
+0  0  1
+0  1  0
+1  0  0
+1  1  1
