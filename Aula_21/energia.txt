@@ -1,0 +1,7 @@
+ENERGIA
+
+Tensão Elétrica 
+
+- Tensão Elétrica é a vontade do elétron de ir do ponto A para o ponto B
+- Quando há dois corpos com diferença de elétrons, pode ocorrer de um corpo doar ou receber elétrons, para assim ocorrer o equilíbrio novamente
+- Essa troca de elétrons pode acontecer por contato, por atrito e por indução.
