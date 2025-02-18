@@ -1,0 +1,44 @@
+ENERGIA
+
+Tensão Elétrica 
+
+- Tensão Elétrica é a vontade do elétron de ir do ponto A para o ponto B
+- Quando há dois corpos com diferença de elétrons, pode ocorrer de um corpo doar ou receber elétrons, para assim ocorrer o equilíbrio novamente
+- Essa troca de elétrons pode acontecer por contato, por atrito e por indução.
+
+- DDP (Diferença de potencial)
+- Volts [V]
+- Não existe energia elétrica/corrente elétrica sem tensão
+
+
+Corrente Elétrica
+
+- Fluxo ordenado de elétrons
+- Ampere [A]
+- Quando o elétron flui, é onde surge o trabalho
+- I 
+
+
+Resistência 
+
+- capacidade de um material de resistir a uma corrente elétrica (capacidade de resistir a passagem do elétron)
+- a resistência diminui o fluxo de elétrons
+- Ohms [Ω]
+
+
+
+1° lei de Ohm
+
+I = V/R
+V = R.I
+R = V/I
+
+a corrente elétrica é diretamente proporcional a tensão e inversamente proporcional a resistência
+
+
+Resistor
+
+- as duas primeiras cores são digitos significativos, e a terceira é um digito multiplicador
+- o último digito é a tolerância
+- transforma corrente elétrica em temperatura
+	
