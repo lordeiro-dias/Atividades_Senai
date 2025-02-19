@@ -8,7 +8,7 @@ Tensão Elétrica
 
 - DDP (Diferença de potencial)
 - Volts [V]
-- Não existe energia elétrica/corrente elétrica sem tensão
+- Não existe energia elétrica/corrente elétrica sem tensão 
 
 
 Corrente Elétrica
@@ -22,8 +22,8 @@ Corrente Elétrica
 Resistência 
 
 - capacidade de um material de resistir a uma corrente elétrica (capacidade de resistir a passagem do elétron)
-- a resistência diminui o fluxo de elétrons
-- Ohms [Ω]
+- a resistência diminui o fluxo de elétrons 
+- Ohms [Ω] 
 
 
 
