@@ -1,0 +1,57 @@
+- conseguimos programar Arduino no Tinkercad por blocos, blocos + texto, e texto
+
+- os pinos são chamados de IO ou GPIO, IO = Input/Output; GPIO = General Propose Input/Output
+
+
+
+sobre linguagem C
+
+- é uma linguagem case sensitive (sabe a diferença entre letras maiúsculas e minúsculas)
+ex:
+Casa
+casa
+CAsa
+CasA
+CASA
+CASa
+
+na linguagem C, todas essas palavras são diferentes
+
+- A linguagem C é escrita em blocos, que são abertos e fechados por { }
+
+- função setup () é a função de inicialização, é realizada ao iniciar ou reiniciar o programa, acontece apenas uma vez por inicialização.
+
+- função loop () é iniciada após a função setup (), como o nome sugere, a função vai rodar infinitamente realizando algo. (ex: ligar e desligar o led L a cada 1s)
+
+- comando pinMode para definir se o pino é uma entrada ou saída
+
+- camelCase = técnica para ler comandos, onde em uma frase as palavras são juntas e a primeira letra de cada palavra é maiúscula, normalmente em camelCase, na primeira palavra é em minúscula. ex: pinMode, camelCase.
+
+- no Arduino, todas as constantes são escritas em letras maiúsculas. ex: OUTPUT.
+
+- TODO COMANDO TEM QUE TERMINAR EM ; (PONTO E VÍRGULA)
+
+- para comentários em uma linha no código, usar //. ex: //comentário 
+
+- para comentários em mais de uma linha no código, usar /**/. ex:
+/* comentário
+feito para teste
+de comentários */
+
+
+
+REGRAS PARA DAR NOME PARA CONSTANTES, VARIÁVEIS, ETC
+
+- todo nome não pode conter espaços, apenas uma palavra
+
+- não pode iniciar com números
+
+- único caractere especial permitido é o _
+
+- não pode ser uma palavra reservada, como por ex: loop, delay, setup
+
+
+BOAS PRÁTICAS PARA DAR NOME PARA CONSTANTES, VARIÁVEIS, ETC
+
+- o nome tem que ser autoexplicativo
+- 
