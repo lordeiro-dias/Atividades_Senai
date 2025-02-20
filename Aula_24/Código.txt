@@ -30,7 +30,6 @@ Data:20/02/2025
 #define pinLEDgreenP2 4
 
 #define delayRed 5000
-#define delayYellow 2000
 #define delayGreen 3000
 #define delayEntre 1000
 #define delayPedestre 500
