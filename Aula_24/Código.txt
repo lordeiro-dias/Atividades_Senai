@@ -1,0 +1,109 @@
+/*
+Autor: Eduardo Borges Lordeiro Dias
+
+Nome programa: Semáforos, cruzamento e semáforo de pedestre
+
+Descrição: LEDs que simulam semáforos de um cruzamento com 
+semáforo de pedestre
+
+Descrição do Exercício: Criar um semáforo com o tempo: 
+vermelho 5s
+verde 3s
+amarelo 2s
+depois adicionar outro semáforo simulando um cruzamento,
+por fim adicionar um ou dois semáforos de pedestre.
+
+Data:20/02/2025
+*/
+
+#define pinLEDred 13
+#define pinLEDyellow 12
+#define pinLEDgreen 11
+
+#define pinLEDred2 10
+#define pinLEDyellow2 9
+#define pinLEDgreen2 8
+
+#define pinLEDredP 7
+#define pinLEDgreenP 6
+#define pinLEDredP2 5
+#define pinLEDgreenP2 4
+
+#define delayRed 5000
+#define delayYellow 2000
+#define delayGreen 3000
+#define delayEntre 1000
+#define delayPedestre 500
+
+void setup () {
+  pinMode(pinLEDred,OUTPUT);
+  pinMode(pinLEDyellow,OUTPUT);
+  pinMode(pinLEDgreen,OUTPUT); 
+  
+  pinMode(pinLEDred2,OUTPUT);
+  pinMode(pinLEDyellow2,OUTPUT);
+  pinMode(pinLEDgreen2,OUTPUT);
+  
+  pinMode(pinLEDredP,OUTPUT);
+  pinMode(pinLEDredP2,OUTPUT);
+  pinMode(pinLEDgreenP,OUTPUT);
+  pinMode(pinLEDgreenP2,OUTPUT);
+}
+
+void loop () {
+  
+  digitalWrite(pinLEDred,HIGH);
+  digitalWrite(pinLEDgreenP,HIGH);
+  delay(delayEntre);
+  
+  digitalWrite(pinLEDred2,LOW);
+  digitalWrite(pinLEDgreen2,HIGH);
+  digitalWrite(pinLEDredP2,HIGH);
+  delay(delayGreen);
+  
+  digitalWrite(pinLEDgreen2,LOW);
+  digitalWrite(pinLEDyellow2,HIGH);
+  digitalWrite(pinLEDgreenP,LOW);
+  
+  
+  digitalWrite(pinLEDredP,HIGH);
+  delay(delayPedestre);
+  digitalWrite(pinLEDredP,LOW);
+  delay(delayPedestre);
+  digitalWrite(pinLEDredP,HIGH);
+  delay(delayPedestre);
+  digitalWrite(pinLEDredP,LOW);
+  delay(delayPedestre);
+  digitalWrite(pinLEDredP,HIGH);
+  
+  
+  digitalWrite(pinLEDyellow2,LOW);
+  digitalWrite(pinLEDred2,HIGH);
+  digitalWrite(pinLEDredP2,LOW);
+  digitalWrite(pinLEDgreenP2,HIGH);
+  delay(delayEntre);
+  
+  digitalWrite(pinLEDred,LOW);
+  digitalWrite(pinLEDgreen,HIGH);
+  delay(delayGreen);
+  
+  digitalWrite(pinLEDgreen,LOW);
+  digitalWrite(pinLEDyellow,HIGH);
+  digitalWrite(pinLEDgreenP2,LOW);
+  
+  
+  digitalWrite(pinLEDredP2,HIGH);
+  delay(delayPedestre);
+  digitalWrite(pinLEDredP2,LOW);
+  delay(delayPedestre);
+  digitalWrite(pinLEDredP2,HIGH);
+  delay(delayPedestre);
+  digitalWrite(pinLEDredP2,LOW);
+  delay(delayPedestre);
+  digitalWrite(pinLEDredP2,HIGH);
+  
+  
+  digitalWrite(pinLEDyellow,LOW);
+  digitalWrite(pinLEDredP,LOW);
+  
+}

@@ -1,0 +1,5 @@
+Criar um semáforo utilizando o Arduino, com um sistema de LEDs, e os tempos: 
+vermelho 5s
+verde 3s
+amarelo 2s
+depois adicionar outro semáforo simulando um cruzamento. Por fim adicionar um ou dois semáforos de pedestre.
