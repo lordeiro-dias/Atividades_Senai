@@ -1,0 +1,72 @@
+- um bit é uma informação que posso levar em apenas dois estados: zeros e ums
+
+- bit é escrito com letra minúscula, pode ser 0 ou 1. 
+
+- com 8 bits, as possibilidades crescem para 256 (0 a 255)
+
+- Byte = 8 bits 0000 0000 / 1111 1111; (Byte é sempre escrito com letra maiúscula)
+
+- 1kB = 1024 Bytes
+- 1mB = 1024 kBytes (kiloByte)
+- 1gB = 1024 mBytes (megaByte)
+- 1tB = 1024 gBytes (gigabyte)
+- 1pB = 1024 tBytes (teraByte) (petaByte)
+
+- sempre que for escrever memória o b é maiúsculo, Byte. 
+- quando falamos em velocidade, o b é minúsculo, bit.
+
+- sempre para mandar o menos dado em um sistema 16bits, preciso utilizar os 16 para mandar mesmo a menor informação. se for 64bits, preciso utilizar os 64 para mandar a menor informação.
+
+
+
+
+tipos normalizados da linguagem C
+
+char - o tipo char vai ter 1 Byte, vai de 0 a 255. não é sinalizado.
+
+unsigned char - especificar que não tem sinal (unsigned)
+
+signed char - especificar que tem sinal (signed)
+
+int - 2 ou 4; vai de -32.768...32.767;  -2.147.483.648...2.147.483.647
+
+unsigned int - 2 ou 4, 0...65.535;  0...4.294.967.295 
+
+short - 2, -32.768...32.767 
+
+unsigned short - 2, 0...65.535
+
+long - 4, -2.147.483.648...2.147.483.647
+
+unsigned long - 4, 0...4.294.967.295
+
+
+
+
+Arduino Serial:
+
+print: imprime na tela
+println: imprime texto na tela e pula para próxima linha
+\n: pula para próxima linha, mas tem que ser na frase do print. ex: Serial.print("blabla \n");
+
+
+C é uma linguagem tipada, então precisa definir o tipo da variável.
+exemplo:
+
+int nomevariavel = 10;
+string variaveltexto = "batata";
+
+
+Serial.print(sizeof(int)); = mostra o tamanho do tipo da variável, pode se colocar tanto o nome da variável, quando o seu tipo.
+
+
+
+
+TODA VEZ QUE FOR FALAR DE TEMPO, COLOCAR O UNSIGNED NA FRENTE, POIS NÃO EXISTE TEMPO NEGATIVO!!!!!!!!!
+
+
+
+
+
+
+
