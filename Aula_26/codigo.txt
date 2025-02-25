@@ -1,0 +1,136 @@
+/*
+Nome do Arquivo: matematica
+Autor: Eduardo Lordeiro
+Data: 24/02/2025
+Descrição: Este código ...
+*/
+
+//*************DECLARAÇÃO DE VARIÁVEIS GLOBAIS*************
+int numeroA = 14;
+int numeroB = 5;
+int resultado = 0;
+float resultadoReal = 0;
+  
+void setup()
+{
+ Serial.begin(9600);
+  
+ //*****SOMA*****
+  
+ resultado = numeroA + numeroB;
+ Serial.print("A soma do numero A: "); Serial.print(numeroA); 
+ Serial.print(" com o numero B: "); Serial.print(numeroB);
+ Serial.print(" eh igual a: "); Serial.println(resultado);
+  
+  
+ //*****SUBTRAÇÃO*****
+  
+ resultado = numeroB - numeroA;
+ Serial.print("A subtracao do numero B: "); Serial.print(numeroA); 
+ Serial.print(" com o numero A: "); Serial.print(numeroB);
+ Serial.print(" eh igual a: "); Serial.println(resultado);
+  
+  
+ //*****MULTIPLICAÇÃO*****
+  
+ resultado = numeroA * numeroB;
+ Serial.print("A multiplicacao do numero A: "); Serial.print(numeroA); 
+ Serial.print(" com o numero B: "); Serial.print(numeroB);
+ Serial.print(" eh igual a: "); Serial.println(resultado);
+  
+  
+ //*****DIVISÃO*****
+  
+ resultado = numeroA / numeroB;
+ Serial.print("A divisao do numero A: "); Serial.print(numeroA); 
+ Serial.print(" com o numero B: "); Serial.print(numeroB);
+ Serial.print(" eh igual a: "); Serial.print(resultado);
+ 
+ resultado = numeroA % numeroB;
+ resultadoReal = (float)numeroA / (float)numeroB; //trocando o tipo da variável
+ Serial.print(", e a sobra eh "); Serial.println(resultado);
+ Serial.print("E o resultado real eh ");
+ Serial.println(resultadoReal, 1); //limita a impressão do resultado em uma casa decimal
+  
+  
+ //*****POTÊNCIA*****
+  
+ resultado = pow(numeroA,numeroB); // 'numeroA' elevado a 'numeroB'
+ Serial.print("A potencia do numero A: "); Serial.print(numeroA);
+ Serial.print(" com o numero B "); Serial.print(numeroB);
+ Serial.print(" eh igual a: "); Serial.println(resultado);
+  
+ //*****QUADRADO*****
+  resultado = sq(numeroA); // 'numeroA' elevado ao quadrado
+  Serial.print("O quadrado do numero A: "); Serial.print(numeroA);
+  Serial.print(" eh igual a "); Serial.println(resultado);
+  
+ 
+ //*****RAIZ QUADRADA*****
+  resultadoReal = sqrt(numeroA);
+  Serial.print("A raiz quadrada de numero A eh: "); Serial.println(resultadoReal);
+  
+  
+ //*****MODULO*****
+  resultado = abs(numeroA * -1);
+  Serial.print("O modulo do numero A eh: "); Serial.println(resultado);
+  
+  
+ //*****RESTRIÇÃO*****
+  resultado = constrain(numeroA, -3, 5); //restringe a variavel numeroA aos
+  										 //limites -3 e 5
+  Serial.print("O numero A: "); Serial.print(numeroA);
+  Serial.print(" foi restrito ao numero "); Serial.println(resultado);
+  
+  
+ //*****REMAPEAMENTO*****
+  resultado = map(numeroA, 0, 20, 0, 10);
+  //map(valor, deMenor, deMaior, paraMenor, paraMaior);
+  Serial.print("O numero A: "); Serial.print(numeroA);
+  Serial.print(" esta mapeado entre 0 e 20, remapeado entre 0 e 10, ficara em: "); Serial.println(resultado);
+  
+  
+  
+  
+  
+ //OPERADORES DE ATRIBUICAO
+  
+  //numeroA = numeroA + 5;
+  Serial.println(numeroA += 5);
+  
+  //numeroA = numeroA - 5;
+  Serial.println(numeroA -= 5);
+  
+  //numeroA = numeroA * 2;
+  Serial.println(numeroA *= 2);
+  
+  //numeroA = numeroA / 2;
+  Serial.println(numeroA /= 2); 
+  
+  
+ //INCREMENTAR A VARIAVEL
+  //numeroA = numeroA + 1;
+  Serial.println(numeroA++); //imprime depois incrementa (utiliza a variavel, depois incrementa ela)
+  Serial.println(++numeroA); //incrementa depois imprime (incrimenta a variavel, depois utiliza ela)
+  
+  
+  //DECREMENTAR A VARIAVEL
+   //numeroA = numeroA - 1;
+   Serial.println(numeroA--); //imprime depois decrementa (utiliza a variavel, depois decrementa ela)
+   Serial.println(--numeroA); //decrementa depois imprime (decrementa a variavel, depois utiliza ela)
+   
+   
+   resultadoReal = 3 * ( (2.0 / 5.0) + (2.0 * 3.0) );
+   Serial.println(resultadoReal);
+   
+   
+   
+}
+
+
+
+void loop()
+{
+
+  
+}
