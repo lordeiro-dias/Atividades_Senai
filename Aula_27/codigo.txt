@@ -1,0 +1,69 @@
+/*
+Nome do Arquivo: IF ELSE E OPERADORES LÓGICOS
+Autor: Eduardo Lordeiro
+Data: 25/02/2025
+Descrição: Este código ...
+*/
+
+//*****OPERADORES DE COMPARAÇÃO*****
+// == verifica se dois valores são iguais
+// != verifica se dois valores são diferentes
+// < verifica se é menor que
+// > verifica se é maior que
+// <= verifica se é menor ou igual
+// >= verifica se é maior ou igual
+
+
+int temperatura = 11;
+bool portaAberta = false;
+
+
+
+void setup(){
+  
+  Serial.begin(9600);
+  
+  if(temperatura >= 30){
+  	Serial.println("2 sois pra cada um");
+    
+  }
+  else if(temperatura < 30 and temperatura > 24){
+	Serial.println("bora pra praia");  
+  }
+  
+  else if(temperatura <= 24 & temperatura > 18){
+  	Serial.println("ta gostosinho");
+  }
+  
+  else if(temperatura <= 18 & temperatura > 6){
+	Serial.println("pega a cobertinha e vai jogar darksouls");
+  }
+  
+  else{
+  	Serial.println("esta deveras frio, se agasalhe e prepare um chocolate quente");
+  }
+  
+  //if(portaAberta == true){} é a mesma coisa que if(portaAberta){}
+  //if(!portaAberta){}  o sinal ! inverte a comparação, 
+  if(portaAberta == false){
+  	Serial.println("ligar o ar condicionado");
+  }
+  
+  else{
+	Serial.println("nao faca nada");  
+  }
+  
+  
+  int umidade = 65;
+  
+  if(temperatura < 12 or umidade > 70){
+  	Serial.println("Perigo. Perigo. Perigo. Perigo. Perigo.");
+  }
+  
+  
+}
+
+void loop(){
+ 
+  
+}
