@@ -1,0 +1,181 @@
+/*
+Nome do Arquivo: IMC
+Autor: Eduardo Lordeiro
+Data: 24/02/2025
+Descrição: Este código é uma calculadora de IMC, onde é colocando
+um peso e uma altura, ele calcula o IMC e diz o resultado, utilizando
+if else.
+*/
+
+//float peso = 96.0;
+//float altura = 2.0; 
+//float imc = 0;
+
+#define pinLedVermelho 13
+#define delayLaranja 500
+#define pinLedLaranja 11
+#define pinLedAzul 10
+#define pinLedVerde 9 
+
+//variavel exercicio 1
+int temperatura = 0;
+
+//variavel exercicio 2
+int bateria = 0;
+
+//variaveis exercicio 3
+int valor = 0;
+int valorMap = 0;
+int valorConstrain = 0;
+
+//variaveis exercicio 4
+int num = 0;
+int numVerifica = 0;
+
+
+
+void setup()
+{
+  Serial.begin(9600);
+  /*
+  imc = peso / sq(altura);
+  
+  if(imc >= 40.0){
+  	Serial.println("Obesidade grau III");
+  }
+  
+  else if(imc >= 35.0){
+  	Serial.println("Obesidade grau II");
+  }
+  
+  else if(imc >= 30.0){
+  	Serial.println("Obesidade grau I");
+  }
+  
+  else if(imc >= 25.0){
+  	Serial.println("Sobrepeso");
+  }
+  
+  else if(imc >= 18.6){
+  	Serial.println("Normal");
+  }
+  
+  else{
+  	Serial.println("Abaixo do peso");
+  }*/
+  
+  
+  
+  
+  
+  
+  //**************************************************
+  
+  
+  
+  
+  
+  pinMode(pinLedVermelho,OUTPUT);
+  
+  temperatura = 31;
+  
+  if (temperatura > 30){
+    Serial.println("A temperatura esta acima de 30 graus");
+  	digitalWrite(pinLedVermelho,HIGH);
+  }
+  
+  else{
+  	Serial.println("A temperatura esta abaixo de 30 graus");
+  }
+  
+
+
+  
+  
+
+
+  //**************************************************
+  
+  pinMode(pinLedLaranja,OUTPUT);
+  
+  bateria = 19;
+
+  if (bateria >= 20 and bateria <= 80){
+    Serial.println("ALERTA DE BATERIA");
+  }
+  
+  else if(bateria < 20){
+  	Serial.println("POUCA BATERIA, CARREGAR O CELULAR");
+  
+  }
+    
+    
+    
+    
+    
+   
+    
+    
+  //**************************************************
+    
+  pinMode(pinLedAzul,OUTPUT);
+  valor = 1;
+    
+  valorMap = map(valor, 0, 1023, 0, 100);
+   
+  valorConstrain = constrain(valorMap, 20, 80);
+  
+    
+  if(valorMap < 20 or valorMap > 80){
+    Serial.print("O valor "); Serial.print(valorMap);
+    Serial.print(" excedeu os limites, valor reajustado para ");
+    Serial.println(valorConstrain);
+    digitalWrite(pinLedAzul,HIGH);
+  }
+  
+  else{
+  	Serial.print("O valor "); Serial.print(valorMap);
+    Serial.print(" nao excedeu os limites");
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  //**************************************************
+  
+  num = 1023;
+  
+  numVerifica = num % 2;
+  
+  if (numVerifica == 0){
+  	digitalWrite(pinLedVerde,HIGH);
+  }
+  
+  else{
+  	Serial.println("O numero eh impar");
+  }
+ 
+}
+
+
+void loop(){
+  if(bateria >=20 and bateria <=80)
+  {
+  	digitalWrite(pinLedLaranja,HIGH);
+  }
+
+  else if(bateria < 20)
+  {
+    digitalWrite(pinLedLaranja,HIGH);
+    delay(delayLaranja);
+    digitalWrite(pinLedLaranja,LOW);
+    delay(delayLaranja);
+  }
+}
+
+//. ass. odirlei
