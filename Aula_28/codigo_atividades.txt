@@ -2,20 +2,22 @@
 Nome do Arquivo: IMC
 Autor: Eduardo Lordeiro
 Data: 24/02/2025
-Descrição: Este código é uma calculadora de IMC, onde é colocando
-um peso e uma altura, ele calcula o IMC e diz o resultado, utilizando
-if else.
+Descrição: Exercicio de IMC e 
 */
 
-//float peso = 96.0; 
-//float altura = 2.0; 
-//float imc = 0;
+
 
 #define pinLedVermelho 13
 #define delayLaranja 500
 #define pinLedLaranja 11
 #define pinLedAzul 10
 #define pinLedVerde 9 
+
+
+//variaveis exercicio IMC
+//float peso = 96.0;
+//float altura = 2.0; 
+//float imc = 0;
 
 //variavel exercicio 1
 int temperatura = 0;
@@ -37,7 +39,8 @@ int numVerifica = 0;
 void setup()
 {
   Serial.begin(9600);
-  /*
+  /* EXERCICIO IMC
+  
   imc = peso / sq(altura);
   
   if(imc >= 40.0){
@@ -69,7 +72,7 @@ void setup()
   
   
   
-  //**************************************************
+  //*****************EXERCICIO 1********************
   
   
   
@@ -94,7 +97,7 @@ void setup()
   
 
 
-  //**************************************************
+  //*****************EXERCICIO 2********************
   
   pinMode(pinLedLaranja,OUTPUT);
   
@@ -116,7 +119,7 @@ void setup()
    
     
     
-  //**************************************************
+  //*****************EXERCICIO 3********************
     
   pinMode(pinLedAzul,OUTPUT);
   valor = 1;
@@ -146,9 +149,9 @@ void setup()
   
   
   
-  //**************************************************
+  //*****************EXERCICIO 4********************
   
-  num = 1023;
+  num = 10072;
   
   numVerifica = num % 2;
   
