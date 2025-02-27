@@ -1,0 +1,127 @@
+void setup(){
+  Serial.begin(9600);
+  
+  //EXERCICIO 5
+  int num = 10;
+  
+  if(num > 0){
+	  Serial.println("O numero informado eh positivo");
+  }
+  
+  else if(num < 0){
+  	 Serial.println("O numero informado eh negativo");
+  }
+  
+  else{
+  	Serial.println("O numero informado eh 0");
+  }
+  
+  
+  
+  
+  
+  
+  
+  //EXERCICIO 6
+  
+  String nome = "Sergio";
+  String cargo = "Dev";
+  float salario = 1000;
+  float salarioNovo = 0;
+  
+  if(salario < 1000){
+  	salarioNovo = (salario * 0.10) + salario;
+      
+    Serial.print("O funcionario "); Serial.print(nome); Serial.print(" que trabalha como ");
+    Serial.print(cargo); Serial.print(", ganhava "); Serial.print(salario); 
+    Serial.print(" e com um acrescimo de 10 porcento, passou a ganhar "); Serial.println(salarioNovo);
+  }
+  
+  else{
+  	Serial.print("O funcionario "); Serial.print(nome); Serial.print(" que trabalha como ");
+    Serial.print(cargo); Serial.print(", ganha "); Serial.println(salario);
+  }
+  
+  
+  
+  
+  
+  
+  
+  //EXERCICIO 7
+  
+  float salario1 = 0;
+  float salarioNovo1 = 0;
+  
+  if(salario1 < 500 and salario1 > 0){
+  	salarioNovo1 = (salario1 * 0.3) + salario1;
+    
+    Serial.print("O funcionario ganhava "); Serial.print(salario1); 
+    Serial.print(" e com o reajuste, passou a ganhar "); Serial.println(salarioNovo1);
+  }
+  
+  else if(salario1 >= 500){
+	Serial.print("O funcionario ganha "); Serial.print(salario1); 
+    Serial.println(", por isso nao tem direito a aumento");
+  }
+  
+  else {
+  	Serial.println("O funcionario nao ganha nada, chame a policia.");
+  }
+  
+  
+  
+  
+  
+  
+  //EXERCICIO 8
+  
+  int numeroA = 20;
+  int numeroB = 15;
+  
+  if(numeroA > numeroB){
+  	Serial.print("O numero "); Serial.print(numeroA); 
+    Serial.print(" eh maior que o numero "); Serial.println(numeroB);
+    
+  }
+  
+  else {
+  	Serial.print("O numero "); Serial.print(numeroB); 
+    Serial.print(" eh maior que o numero "); Serial.println(numeroA);
+  
+  }
+  
+  
+  
+  
+  
+  
+  //EXERCICIO 9
+  
+  float nota1 = 4;
+  float nota2 = 4;
+  float nota3 = 4;
+  float nota4 = 5;
+  float media = 0;
+  
+  
+  media = (nota1 + nota2 + nota3 + nota4) / 4;
+  
+  if(media >= 7.0){
+  	Serial.print("APROVADO");
+  }
+  
+  else if(media >=5.0){
+  	Serial.print("RECUPERACAO");
+  }
+  
+  else{
+  	Serial.print("REPROVADO");
+  }
+  
+} 
+
+void loop(){
+  
+  
+}
