@@ -7,7 +7,7 @@ um peso e uma altura, ele calcula o IMC e diz o resultado, utilizando
 if else.
 */
 
-//float peso = 96.0;
+//float peso = 96.0; 
 //float altura = 2.0; 
 //float imc = 0;
 
