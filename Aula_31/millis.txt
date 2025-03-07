@@ -1,0 +1,27 @@
+#define pinLedVermelho 13
+#define pinLedVerde 10
+#define tempoPisca 1000
+
+unsigned long tempoDecorrido;
+unsigned long tempoInicial = 0;
+bool estadoLed = 0;
+
+void setup()
+{ 
+  pinMode(pinLedVermelho,OUTPUT);
+  pinMode(pinLedVerde,OUTPUT);
+  Serial.begin(9600); 
+}
+
+void loop()
+{ 
+  tempoDecorrido = millis();
+   
+   if(tempoDecorrido - tempoInicial >= tempoPisca){ //sempre pega o tempo atual menos o tempo que iniciou
+  	estadoLed = !estadoLed; //inverte o estado do led 
+    tempoInicial = tempoDecorrido; //redefine o tempo inicial 
+  }
+  
+  digitalWrite(pinLedVermelho,estadoLed);
+  
+}
