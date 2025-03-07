@@ -1,0 +1,63 @@
+#define pinLedVermelho 13
+#define pinLedAmarelo 9
+#define pinLedVerde 5
+
+#define tempoVermelho 5000
+#define tempoAmarelo 2000
+#define tempoVerde 3000
+
+//pode usar "const int tempoVermelho = 5000;" no lugar de define
+
+unsigned long tempoDecorrido;
+unsigned long tempoInicial = 0;
+char faseSemaforo = 0;
+
+void setup()
+{
+  pinMode(pinLedVermelho,OUTPUT);
+  pinMode(pinLedAmarelo,OUTPUT);
+  pinMode(pinLedVerde,OUTPUT);
+}
+
+void loop()
+{
+  
+  tempoDecorrido = millis();
+  
+  
+  if(faseSemaforo == 0){
+  	digitalWrite(pinLedVermelho,0);
+    digitalWrite(pinLedAmarelo,0);
+    digitalWrite(pinLedVerde,1);
+    
+    
+    if(tempoDecorrido - tempoInicial >= tempoVerde){
+    	faseSemaforo+=1;
+      	tempoInicial = tempoDecorrido;
+    }
+  }
+  
+  else if(faseSemaforo == 1){
+  	digitalWrite(pinLedVermelho,0);
+    digitalWrite(pinLedAmarelo,1);
+    digitalWrite(pinLedVerde,0);
+    
+    if(tempoDecorrido - tempoInicial >= tempoAmarelo){
+      	faseSemaforo++;
+      	tempoInicial = tempoDecorrido;
+    }
+  }
+  
+  else if(faseSemaforo == 2){
+  	digitalWrite(pinLedVermelho,1);
+    digitalWrite(pinLedAmarelo,0);
+    digitalWrite(pinLedVerde,0);
+    
+    
+    if(tempoDecorrido - tempoInicial >= tempoVermelho){
+    	faseSemaforo = 0;
+      	tempoInicial = tempoDecorrido;
+    }
+  }
+  
+}
