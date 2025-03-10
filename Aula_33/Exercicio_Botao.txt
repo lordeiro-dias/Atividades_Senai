@@ -1,0 +1,21 @@
+const int pinBotao = 10;
+int vezesApertadas = 0;
+
+void setup()
+{
+  pinMode(pinBotao,INPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  static bool estadoAnterior = 0; static é usada para variavel no loop não ser excluída
+  bool estadoAtual = digitalRead(pinBotao);
+  
+  if(estadoAtual and !estadoAnterior){
+    vezesApertadas++;
+    Serial.println(vezesApertadas);
+  }
+    estadoAnterior = estadoAtual;
+  
+}
