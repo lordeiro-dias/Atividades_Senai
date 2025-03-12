@@ -1,0 +1,16 @@
+#define pinAnalogico A0
+
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  int leituraA0 = analogRead(pinAnalogico);
+  float conversao = (leituraA0 * 5) / 1024.0;
+  
+  Serial.println(conversao);
+  
+  
+}
