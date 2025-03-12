@@ -1,0 +1,117 @@
+/* 
+Autor: Eduardo Lordeiro
+
+Nome programa: Três botões, três LEDs e um display
+
+Descrição: Quando o botão A for pressionado, ele liga o LED Vermelho e mostra 
+no display que o LED Vermelho está ligado. Quando for pressionado novamente, ele 
+desliga o LED Vermelho e mostra no display que o LED Vermelho está desligado.
+
+Quando o botão B for pressionado, ele liga o LED Azul e mostra 
+no display que o LED Azul está ligado. Quando for pressionado novamente, ele 
+desliga o LED Azul e mostra no display que o LED Azul está desligado.
+
+Quando o botão C for pressionado, ele liga o LED Branco e mostra 
+no display que o LED Branco está ligado. Quando for pressionado novamente, ele 
+desliga o LED Branco e mostra no display que o LED Branco está desligado.
+
+Data: 12/03/2025
+*/
+
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+const int pinLedVermelho = 6;
+const int pinLedAzul = 5;
+const int pinLedBranco = 4;
+const int pinBotaoA = 10;
+const int pinBotaoB = 9;
+const int pinBotaoC = 8;
+
+void setup()
+{
+  pinMode(pinBotaoA,INPUT);
+  pinMode(pinBotaoB,INPUT);
+  pinMode(pinBotaoC,INPUT);
+  pinMode(pinLedVermelho,OUTPUT);
+  pinMode(pinLedAzul,OUTPUT);
+  pinMode(pinLedBranco,OUTPUT);
+  Serial.begin(9600);
+  lcd.init();
+  lcd.backlight();
+  lcd.setCursor(0,0);
+  lcd.print("LedA");
+  lcd.setCursor(5,0);
+  lcd.print("OFF");
+  lcd.setCursor(0,1);
+  lcd.print("LedB");
+  lcd.setCursor(5,1);
+  lcd.print("OFF");
+  lcd.setCursor(11,0);
+  lcd.print("LedC");
+  lcd.setCursor(11,1);
+  lcd.print("OFF");
+}
+
+void loop()
+{
+  bool estadoBotaoA = digitalRead(pinBotaoA);
+  bool estadoBotaoB = digitalRead(pinBotaoB);
+  bool estadoBotaoC = digitalRead(pinBotaoC);
+  static bool estadoAnteriorA = 0;
+  static bool estadoLedVermelho = 0;
+  static bool estadoAnteriorB = 0;
+  static bool estadoLedAzul = 0;
+  static bool estadoAnteriorC = 0;
+  static bool estadoLedBranco = 0;
+  
+  if(estadoBotaoA and !estadoAnteriorA){
+  	estadoLedVermelho = !estadoLedVermelho;
+    digitalWrite(pinLedVermelho,estadoLedVermelho);
+    lcd.setCursor(5,0);
+    
+    if(estadoLedVermelho){
+  	 lcd.print("ON ");    
+    }
+    
+    else{
+     lcd.print("OFF");
+    }
+    
+  }
+  
+  if(estadoBotaoB and !estadoAnteriorB){
+  	estadoLedAzul = !estadoLedAzul;
+    digitalWrite(pinLedAzul,estadoLedAzul);
+    lcd.setCursor(5,1);
+    
+    if(estadoLedAzul){
+     lcd.print("ON ");
+    }
+    
+    else{
+     lcd.print("OFF");
+    }
+    
+  }
+  
+  if(estadoBotaoC and !estadoAnteriorC){
+  	estadoLedBranco = !estadoLedBranco;
+    digitalWrite(pinLedBranco,estadoLedBranco);
+    lcd.setCursor(11,1);
+    
+    if(estadoLedBranco){
+      lcd.print("ON ");
+    }
+    
+    else{
+      lcd.print("OFF");
+    }
+    
+  }
+  
+  estadoAnteriorA = estadoBotaoA;
+  estadoAnteriorB = estadoBotaoB;
+  estadoAnteriorC = estadoBotaoC;
+}
