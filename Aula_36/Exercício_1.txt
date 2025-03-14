@@ -1,0 +1,88 @@
+/* 
+Autor: Eduardo Lordeiro
+
+Nome programa: Cinco botões, dois LEDs e um display
+
+Descrição: Se nenhum botão estiver pressionado, o display mostrará 
+"BOTÃO SOLTO", caso o botão 1 estiver pressionado, mostrará "BOTÃO 1 ON", 
+acontecerá a mesma coisa com os outros botões, mas somente se estiverem 
+pressionados.
+
+O botão 4 acionará o LED verde enquanto estiver pressionado, e apagará quando
+for solto, e o botão 5 acionará o LED vermelho, somente se pressionado também.
+
+O código é feito com base em entradas analógicas, não ligando os botões em 
+outras entradas, mas sim diferenciando eles com base na diferente corrente
+que cada um recebe.
+
+Data: 13/03/2025
+*/
+
+
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd (0x27, 16, 2);
+
+const int pinLedVerde = 9;
+const int pinLedVermelho = 8;
+
+void setup()
+{
+  lcd.init();
+  lcd.backlight();
+  Serial.begin(9600);
+  
+  pinMode(pinLedVerde,OUTPUT);
+  pinMode(pinLedVermelho,OUTPUT);
+ 
+}
+
+
+void loop()
+{ 
+ //botaoSolto = 1023
+ //botao1 = 0
+ //botao2 = 145
+ //botao3 = 329
+ //botao4 = 505
+ //botao5 = 741
+  lcd.print("BOTAO");
+  
+  lcd.setCursor(6,0);
+  
+  
+  
+  if(analogRead(A0) >= 0 and analogRead(A0) <= 50){
+    
+  	lcd.print("1 ON      ");
+  }
+  
+  else if(analogRead(A0) > 50 and analogRead(A0) <= 200){
+    
+  	lcd.print("2 ON      ");
+  }
+  
+  else if(analogRead(A0) > 200 and analogRead(A0) <= 400){
+    
+  	lcd.print("3 ON      ");
+  }
+  
+  else if(analogRead(A0) > 400 and analogRead(A0) <= 650){
+    
+  	lcd.print("4 ON      ");
+    digitalWrite(pinLedVerde,1);
+  }
+  
+  else if(analogRead(A0) > 650 and analogRead(A0) <= 950){
+   
+  	lcd.print("5 ON      ");
+    digitalWrite(pinLedVermelho,1);
+  }
+  
+  else{
+  	lcd.print("SOLTO     ");
+    digitalWrite(pinLedVerde,0);
+  	digitalWrite(pinLedVermelho,0);
+  }
+  
+}

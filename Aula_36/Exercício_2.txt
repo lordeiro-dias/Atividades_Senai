@@ -1,0 +1,134 @@
+/* 
+Autor: Eduardo Lordeiro
+
+Nome programa: Três botões, dois LEDs e um display com seleção
+
+Descrição: Os dois primeiros botões servem como seletores no display,
+alternando entre duas opções de LED. O quinto botão serve para ligar 
+ou desligar o LED selecionado. Quando um botão for ligado ou desligado,
+aparecerá no display o estado atual do LED.
+
+O programa foi codificado de uma forma diferente dos anteriores. Quando os botões
+são apertados, conta apenas quando ele foi APERTADO, se segurar não muda em nada.
+E no código, apertar um botão, apenas altera o estado de uma variável, e essa variável
+por fora do código do botão que faz tudo funcionar.
+
+Data: 13/03/2025
+*/
+
+#include <LiquidCrystal_I2C.h>
+
+#define valorBotao1 0
+#define valorBotao2 145
+#define valorBotao3 329
+#define valorBotao4 505
+#define valorBotao5 741
+
+LiquidCrystal_I2C lcd (0x27, 16, 2);
+
+const int pinLedVerde = 9;
+const int pinLedVermelho = 8;
+
+void setup()
+{
+  lcd.init();
+  lcd.backlight();
+  Serial.begin(9600);
+  
+  pinMode(pinLedVerde,OUTPUT);
+  pinMode(pinLedVermelho,OUTPUT);
+  
+  lcd.setCursor(1,0);
+  lcd.print("LED A OFF");
+  lcd.setCursor(1,1);
+  lcd.print("LED B OFF");
+}
+
+
+void loop()
+{ 
+ 
+  static bool posicao = 0;
+  static bool ligaLed = 0;
+  static bool estadoLedVerde = 0;
+  static bool estadoLedVermelho = 0;
+  
+  
+  //INICIO TRATAMENTO BOTÕES
+  static int valorAnteriorLeitura = 1023;
+  int valorLeitura = analogRead(A0);
+  
+  
+  if(valorAnteriorLeitura == 1023 and 
+     valorLeitura == valorBotao1){
+    //BOTAO 1 PRESSIONADO
+    posicao = 0;
+  }
+  
+  else if(valorAnteriorLeitura == 1023 and
+         valorLeitura >= valorBotao2 * 0.9 and
+         valorLeitura <= valorBotao2 * 1.1){
+    //BOTAO 1 PRESSIONADO
+    posicao = 1;
+  }
+  
+  if(valorAnteriorLeitura == 1023 and 
+     valorLeitura >= valorBotao5 * 0.9 and
+     valorLeitura <= valorBotao5 * 1.1){
+    
+    ligaLed = !ligaLed;
+  }
+
+  valorAnteriorLeitura = valorLeitura;
+  //FIM TRATAMENTO BOTÕES
+  
+  if(posicao == 0){
+  	lcd.setCursor(0,0);
+    lcd.print(">");
+    lcd.setCursor(0,1);
+    lcd.print(" ");
+   
+    if(ligaLed == 1){
+    	estadoLedVerde = !estadoLedVerde;
+      	digitalWrite(pinLedVerde,estadoLedVerde);
+      	ligaLed = 0;
+      
+        if(estadoLedVerde == 1){
+        	lcd.setCursor(7,0);
+          	lcd.print("ON ");
+        }
+      
+      	else{
+        	lcd.setCursor(7,0);
+          	lcd.print("OFF");
+        }
+    }
+    
+  }
+  
+  else {
+  	lcd.setCursor(0,0);
+    lcd.print(" ");
+    lcd.setCursor(0,1);
+    lcd.print(">");
+    
+    if(ligaLed == 1){
+    	estadoLedVermelho = !estadoLedVermelho;
+      	digitalWrite(pinLedVermelho,estadoLedVermelho);
+      	ligaLed = 0;
+      
+      if(estadoLedVermelho == 1){
+        	lcd.setCursor(7,1);
+          	lcd.print("ON ");
+        }
+      
+      	else{
+        	lcd.setCursor(7,1);
+          	lcd.print("OFF");
+        }	
+    }
+      
+  }
+  
+  
+}
