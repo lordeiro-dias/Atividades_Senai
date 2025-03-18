@@ -1,0 +1,320 @@
+/* 
+Autor: Eduardo Lordeiro
+
+Nome programa: Três botões, dois LEDs e um display com seleção
+
+Descrição: Os dois primeiros botões servem como seletores no display,
+alternando entre duas opções de LED. O quinto botão serve para ligar 
+ou desligar o LED selecionado. Quando um botão for ligado ou desligado,
+aparecerá no display o estado atual do LED.
+
+O botão 3 serve para diminuir a intensidade dos LEDs, mostrando no
+display a porcentagem de luminosidade. O display 4 aumenta essa
+intensidade.
+
+O programa foi codificado de uma forma diferente dos anteriores. Quando os botões
+são apertados, conta apenas quando ele foi APERTADO, se segurar não muda em nada.
+E no código, apertar um botão, apenas altera o estado de uma variável, e essa variável
+por fora do código do botão que faz tudo funcionar.
+
+Data: 14/03/2025
+*/
+
+#include <LiquidCrystal_I2C.h>
+
+#define valorBotao1 0
+#define valorBotao2 145
+#define valorBotao3 329
+#define valorBotao4 505
+#define valorBotao5 741
+
+LiquidCrystal_I2C lcd (0x27, 16, 2);
+
+const int pinLedVerde = 11;
+const int pinLedVermelho = 10;
+
+void setup()
+{
+  lcd.init();
+  lcd.backlight();
+  Serial.begin(9600);
+  
+  pinMode(pinLedVerde,OUTPUT);
+  pinMode(pinLedVermelho,OUTPUT);
+  
+  lcd.setCursor(1,0);
+  lcd.print("LED A OFF");
+  lcd.setCursor(1,1);
+  lcd.print("LED B OFF");
+}
+
+
+void loop()
+{ 
+ 
+  static bool posicao = 0;
+  
+  static bool ligaLed = 0;
+  static bool estadoLedVerde = 0;
+  static bool estadoLedVermelho = 0;
+  static bool aumentaBrilho = 0;
+  static bool diminuiBrilho = 0;
+  static float valorBrilhoVermelho = 255;
+  static float valorBrilhoVerde = 255;
+  static int porcentagemA = 100;
+  static int porcentagemB = 100;
+  static bool alteracao = 0;
+  
+  		//INICIO TRATAMENTO BOTÕES
+  static int valorAnteriorLeitura = 1023;
+  int valorLeitura = analogRead(A0);
+  
+  		//BOTAO 1 PRESSIONADO
+  if(valorAnteriorLeitura == 1023 and 
+     valorLeitura == valorBotao1){
+    
+    posicao = 0;
+    alteracao = 1;
+  }
+  
+  		//BOTAO 2 PRESSIONADO
+  else if(valorAnteriorLeitura == 1023 and
+         valorLeitura >= valorBotao2 * 0.9 and
+         valorLeitura <= valorBotao2 * 1.1){
+    
+    posicao = 1;
+    alteracao = 1;
+  }
+  
+  		//BOTAO 3 PRESSIONADO
+  else if(valorAnteriorLeitura == 1023 and
+         valorLeitura >= valorBotao3 * 0.9 and
+         valorLeitura <= valorBotao3 * 1.1){
+    	
+    diminuiBrilho = !diminuiBrilho;
+    alteracao = 1;
+ 	
+  }
+  
+  		//BOTAO 4 PRESSIONADO
+  else if(valorAnteriorLeitura == 1023 and
+         valorLeitura >= valorBotao4 * 0.9 and
+         valorLeitura <= valorBotao4 * 1.1){
+    
+    aumentaBrilho = !aumentaBrilho;
+    alteracao = 1;
+    	
+  }
+  
+ 		//BOTAO 5 PRESSIONADO
+  else if(valorAnteriorLeitura == 1023 and 
+     valorLeitura >= valorBotao5 * 0.9 and
+     valorLeitura <= valorBotao5 * 1.1){
+    
+    ligaLed = !ligaLed;
+    porcentagemA = 100;
+    porcentagemB = 100;
+    
+    alteracao = 1;
+  }
+  
+
+  valorAnteriorLeitura = valorLeitura;
+  		//FIM TRATAMENTO BOTÕES
+  
+  if(alteracao = 1){
+  		//TROCAR POSIÇÃO SETINHA PRA CIMA
+  if(posicao == 0){
+  	lcd.setCursor(0,0);
+    lcd.print(">");
+    lcd.setCursor(0,1);
+    lcd.print(" ");
+   
+  		//LIGAR E DESLIGAR LED VERDE  
+    if(ligaLed == 1){
+    	estadoLedVerde = !estadoLedVerde;
+      	digitalWrite(pinLedVerde,estadoLedVerde);
+      	ligaLed = 0;
+      
+        if(estadoLedVerde == 1){
+        	lcd.setCursor(7,0);
+          	lcd.print("ON  100%");
+        }
+      
+      	else{
+        	lcd.setCursor(7,0);
+          	lcd.print("OFF     ");
+        }
+    }
+    
+  }
+  
+  		//TROCAR POSIÇÃO SETINHA PRA BAIXO
+  else {
+  	lcd.setCursor(0,0);
+    lcd.print(" ");
+    lcd.setCursor(0,1);
+    lcd.print(">");
+    
+  		//LIGAR E DESLIGAR LED VERMELHO 
+    if(ligaLed == 1){
+    	estadoLedVermelho = !estadoLedVermelho;
+      	digitalWrite(pinLedVermelho,estadoLedVermelho);
+      	ligaLed = 0;
+      
+      if(estadoLedVermelho == 1){
+        	lcd.setCursor(7,1);
+          	lcd.print("ON  100%");
+      }
+      
+      	else{
+        	lcd.setCursor(7,1);
+          	lcd.print("OFF     ");
+        }	
+    }
+      
+  }
+  
+  
+  		//INTENSIDADE DOS LEDS
+  
+  		//AUMENTAR INTENSIDADE LED VERDE
+  if(aumentaBrilho == 1){
+    if(posicao == 0 and estadoLedVerde == 1){
+  		valorBrilhoVerde = valorBrilhoVerde + (255.0 * 0.1);
+      
+      	analogWrite(pinLedVerde,valorBrilhoVerde);
+      
+      	porcentagemA = porcentagemA + 10;
+      
+      if(porcentagemA < 100){
+      	lcd.setCursor(11,0);
+      	lcd.print(" ");
+      	lcd.setCursor(12,0);
+      	lcd.print(porcentagemA);
+      	lcd.setCursor(14,0);
+      	lcd.print("%");
+        
+      }
+      
+      else if(porcentagemA == 110){
+      	lcd.setCursor(11,0);
+        porcentagemA = 100;
+        lcd.print(porcentagemA);
+        
+      }
+    
+      if (valorBrilhoVerde > 255.0){
+        	valorBrilhoVerde = 255.0;
+      		analogWrite(pinLedVerde,valorBrilhoVerde);
+      }
+      
+   }
+    
+    
+    	//AUMENTAR INTENSIDADE LED VERMELHO
+    else if (posicao == 1 and estadoLedVermelho == 1) {
+    	valorBrilhoVermelho = valorBrilhoVermelho + (255.0 * 0.1);
+      	analogWrite(pinLedVermelho,valorBrilhoVermelho);
+      
+      porcentagemB = porcentagemB + 10;
+      
+      if(porcentagemB < 100){
+      	lcd.setCursor(11,1);
+      	lcd.print(" ");
+      	lcd.setCursor(12,1);
+      	lcd.print(porcentagemB);
+      	lcd.setCursor(14,1);
+      	lcd.print("%");
+        
+      }
+      
+      else if(porcentagemB == 110){
+      	lcd.setCursor(11,1);
+        porcentagemB = 100;
+        lcd.print(porcentagemB);
+        
+      }
+      
+      if (valorBrilhoVermelho > 255.0){ 
+          valorBrilhoVermelho = 255.0;
+          analogWrite(pinLedVermelho,valorBrilhoVermelho);
+      }
+      
+     }
+    aumentaBrilho = 0;
+  }
+  
+  
+  		//DIMINUIR INTENSIDADE LED VERDE
+  if(diminuiBrilho == 1){
+  	if(posicao == 0 and estadoLedVerde == 1){
+      	
+  		valorBrilhoVerde = valorBrilhoVerde - (255.0 * 0.1);
+      	analogWrite(pinLedVerde,valorBrilhoVerde);
+      
+    	porcentagemA = porcentagemA - 10;  
+	      
+      
+      	if(porcentagemA > 10){
+          lcd.setCursor(11,0);
+          lcd.print(" ");
+          lcd.setCursor(12,0);
+          lcd.print(porcentagemA);
+          lcd.setCursor(14,0);
+      	  lcd.print("%");
+      	}
+      
+      else if(porcentagemA == 0){
+      	lcd.setCursor(12,0);
+        porcentagemA = 10;
+      	lcd.print(porcentagemA);
+        
+      }
+      
+    
+      if (valorBrilhoVerde < 25.5){ 
+        valorBrilhoVerde = 25.5;
+      	analogWrite(pinLedVerde,valorBrilhoVerde);
+        
+      }
+      
+   }
+   
+    
+    	//DIMINUIR INTENSIDADE LED VERMELHO
+    else if (posicao == 1 and estadoLedVermelho == 1){
+      
+    	valorBrilhoVermelho = valorBrilhoVermelho - (255.0 * 0.1);
+      	analogWrite(pinLedVermelho,valorBrilhoVermelho);
+      
+      	porcentagemB = porcentagemB - 10;
+      
+      if(porcentagemB > 10){
+          lcd.setCursor(11,1);
+          lcd.print(" ");
+          lcd.setCursor(12,1);
+          lcd.print(porcentagemB);
+          lcd.setCursor(14,1);
+      	  lcd.print("%");
+      	}
+      
+      else if(porcentagemB == 0){
+      	lcd.setCursor(12,1);
+        porcentagemB = 10;
+      	lcd.print(porcentagemB);
+        
+      }
+      
+      if (valorBrilhoVermelho < 25.5){ 
+        valorBrilhoVermelho = 25.5;
+      	analogWrite(pinLedVermelho,valorBrilhoVermelho);
+      }
+      
+    }
+    diminuiBrilho = 0;
+  }
+  }  
+  		//FIM INTENSIDADE DOS LEDS
+  
+}
