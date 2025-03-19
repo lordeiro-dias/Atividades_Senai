@@ -1,0 +1,53 @@
+
+
+int numeros[10]; 
+
+void setup()
+{
+  Serial.begin(9600);
+  
+  int numAtual = 1;
+  int numNovo = 1;
+  int numAntigo = 0;
+  
+  for(int i = 0; i < 10; i++){
+  	
+    numeros[i] = numNovo;
+    
+    numNovo = numAntigo + numAtual;
+    numAntigo = numAtual;
+    numAtual = numNovo;
+   
+  }
+  
+  for(int i = 0; i < 10; i++){
+    Serial.println(numeros[i]);
+  }
+  
+  Serial.print("O oitavo numero eh: ");
+  Serial.println(numeros[7]);
+}	
+
+void loop()
+{
+  /*
+  static byte numAtual = 1;
+  static byte numNovo = 1;
+  static byte numAntigo = 0;
+  
+    Serial.println(numNovo);
+
+    numNovo = numAntigo + numAtual;
+
+    numAntigo = numAtual;
+    numAtual = numNovo;
+
+    if(numAtual > 21){
+      numAtual = 1;
+      numNovo = 1;
+      numAntigo = 0;
+    }
+  
+  delay(1000);
+  */
+}
