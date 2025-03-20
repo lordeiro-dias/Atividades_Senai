@@ -1,0 +1,24 @@
+/* Faça um programa que calcule a tabuada de um numero e mostre no monitor serial.
+   ex: 5 x 1 = 5
+   5 x 2 = 10
+*/
+void setup()
+{
+  int numero = 356;
+  int contador = 1;
+  int result = 0;
+  Serial.begin(9600);
+  Serial.print("Tabuada do "); Serial.print(numero); Serial.println(":");
+  
+  for(int i = 0; i < 10; i++){
+  	result = numero * contador;
+    Serial.print(numero); Serial.print(" x "); Serial.print(contador);
+    Serial.print(" = "); Serial.println(result);
+    contador++;
+  }
+}
+
+void loop()
+{
+ 
+}

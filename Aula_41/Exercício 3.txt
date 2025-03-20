@@ -1,0 +1,35 @@
+/*Faça um programa que acenda 3 leds, um por um, mantenha-os 
+acesos por 3 segundos e em seguida apague-os, um por um.
+
+	
+*/
+int pinLeds[3] = {13,12,11};
+int contador = 0;
+void setup()
+{
+  for(int i = 0; i < 3; i++){
+  	pinMode(pinLeds[i],OUTPUT);
+  }
+  
+  do{
+  	digitalWrite(pinLeds[contador],HIGH);
+    contador++;
+    delay(500);
+  }
+  while(contador < 3);
+  
+  delay(3000);
+  contador = 0;
+  
+  do{
+  	digitalWrite(pinLeds[contador],LOW);
+    contador++;
+    delay(500);
+  }
+  while(contador < 3);
+}
+
+void loop()
+{
+  
+}
