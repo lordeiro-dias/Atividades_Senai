@@ -1,0 +1,1 @@
+Aula de configuração e código básico que já fizemos no tinkercad no vscode
