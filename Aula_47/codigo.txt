@@ -1,0 +1,131 @@
+#include <Arduino.h>
+#include <LiquidCrystal_I2C.H>
+
+#define pinButtonLeft 19
+#define pinButtonRight 15
+#define pinLed 18
+
+void cenario();
+LiquidCrystal_I2C lcd(0x27, 20, 4);
+
+int screenPosition[20] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
+int charPosition = 0;
+
+byte customChar[] = {
+    B11111,
+    B11111,
+    B11111,
+    B11111,
+    B11111,
+    B11111,
+    B11111,
+    B11111};
+
+void setup()
+{
+  Serial.begin(115200);
+  pinMode(pinButtonLeft, INPUT_PULLUP);
+  pinMode(pinButtonRight, INPUT_PULLUP);
+  pinMode(pinLed, OUTPUT);
+
+  lcd.init();
+  lcd.backlight();
+  lcd.createChar(0, customChar);
+
+  cenario();
+
+  lcd.setCursor(0,2);
+  lcd.print("c");
+  lcd.setCursor(15, 2);
+  lcd.print("*");
+
+}
+
+void loop()
+{
+  bool stateButtonRight = digitalRead(pinButtonRight);
+  static bool previousStateButtonRight = 1;
+  static bool previousActionRight = 1;
+  bool stateButtonLeft = digitalRead(pinButtonLeft);
+  static bool previousStateButtonLeft = 1;
+  static bool previousActionLeft = 1;
+
+
+  static unsigned long lastTimeChange = 0;
+  static unsigned long lastTimeChange2 = 0;
+  unsigned long time = millis();
+  const unsigned long filterTime = 50;
+
+  //! INICIA TRATAMENTO RIGHT BUTTON
+
+  //* DETECTA MUDANÇA DE ESTADO BOTÃO
+  if (stateButtonRight != previousStateButtonRight)
+  {
+    lastTimeChange = time; //* atualiza o tempo da mudança
+  }
+
+  //* verifica se o novo estado se manteve tempo o suficiente
+  if ((time - lastTimeChange) > filterTime)
+  {
+
+    //* Verifica se ainda não processamos essa nova ação
+    if (stateButtonRight != previousActionRight)
+    {
+      previousActionRight = stateButtonRight; //* atualiza o estado já processado para evitar ações repetidas enquanto o botão estiver no mesmo estado.
+
+      if (!stateButtonRight and charPosition < 19)
+      {
+        charPosition++;
+        lcd.setCursor(charPosition - 1, 2);
+        lcd.print(" c");
+      }
+    }
+  }
+
+  //! FIM TRATAMENTO RIGHT BUTTON
+    
+
+
+  //! INICIO TRATAMENTO LEFT BUTTON
+
+  if (stateButtonLeft != previousStateButtonLeft)
+  {
+    lastTimeChange2 = time; //* atualiza o tempo da mudança
+  }
+
+  //* verifica se o novo estado se manteve tempo o suficiente
+  if ((time - lastTimeChange2) > filterTime)
+  {
+
+    //* Verifica se ainda não processamos essa nova ação
+    if (stateButtonLeft != previousActionLeft)
+    {
+      previousActionLeft = stateButtonLeft; //* atualiza o estado já processado para evitar ações repetidas enquanto o botão estiver no mesmo estado.
+
+      if (!stateButtonLeft and charPosition >= 0)
+      {
+        charPosition--;
+        lcd.setCursor(charPosition +1, 2);
+        lcd.print("c ");
+      }
+    }
+  }
+
+  //! FIM TRATAMENTO LEFT BUTTON
+
+  previousStateButtonRight = stateButtonRight;
+  previousStateButtonLeft = stateButtonLeft;
+
+  if(charPosition == 15) digitalWrite(pinLed, 1);
+}
+
+void cenario()
+{
+  for (int i = 0; i < 20; i++)
+  {
+    lcd.setCursor(i, 3);
+    lcd.write((uint8_t)0);
+    lcd.setCursor(i, 0);
+    lcd.write((uint8_t)0);
+  }
+}
